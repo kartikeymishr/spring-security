@@ -72,7 +72,7 @@ public class AuthorizationServerConfig {
         RSAKey rsaKey = generateRsa();
         JWKSet jwkSet = new JWKSet(rsaKey);
 
-        return ((jwkSelector, context) -> jwkSelector.select(jwkSet));
+        return ((jwkSelector, securityContext) -> jwkSelector.select(jwkSet));
     }
 
     private static RSAKey generateRsa() {

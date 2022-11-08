@@ -11,19 +11,19 @@ import java.security.Principal;
 
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
-@RestController("/api")
+@RestController
 public class HelloController {
 
     @Autowired
     private WebClient webClient;
 
     @GetMapping("/hello")
-    public String hello(Principal principal) {
-        return "Hello " + principal.getName() + "!";
+    public String hello() {
+        return "Hello World!";
     }
 
     @GetMapping("/getusers")
-    public String[] users(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) {
+    public String[] users(@RegisteredOAuth2AuthorizedClient("api-client-authorization-code") OAuth2AuthorizedClient client) {
         return this.webClient
                 .get()
                 .uri("http://127.0.0.1:8090/api/users")

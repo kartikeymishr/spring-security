@@ -22,7 +22,6 @@ import java.util.List;
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
-
     @Autowired
     private UserRepository userRepository;
 
@@ -48,8 +47,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> getAuthorities(List<String> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        for (String role :
-                roles) {
+        for (String role : roles) {
             authorities.add(new SimpleGrantedAuthority(role));
         }
 
